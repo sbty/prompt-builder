@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Builder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🛠️ Prompt Builder</h1>
+    <p class="description">
+      テンプレート内の <code>{{変数名}}</code> を自動で置換します。
+    </p>
+
+    <!-- ===== テキストA ===== -->
+    <section class="card">
+      <div class="card-header">
+        <h2>テキストA（テンプレート）</h2>
+        <label class="file-btn">
+          📂 ファイル読込
+          <input type="file" id="fileA" accept=".txt,.md" />
+        </label>
+      </div>
+      <textarea
+        id="templateText"
+        rows="8"
+        placeholder="例：&#10;この曲を分析しなさい。&#10;{{アーティスト名}}&#10;{{曲名}}"
+      ></textarea>
+    </section>
+
+    <!-- ===== テキストB ===== -->
+    <section class="card">
+      <div class="card-header">
+        <h2>テキストB（変数と値）</h2>
+        <label class="file-btn">
+          📂 ファイル読込
+          <input type="file" id="fileB" accept=".txt,.md,.csv" />
+        </label>
+      </div>
+      <textarea
+        id="variablesText"
+        rows="6"
+        placeholder="例：&#10;アーティスト名 = マイケルジャクソン&#10;曲名 = スリラー"
+      ></textarea>
+      <p class="hint">
+        形式: <code>変数名 = 値</code>（1行に1つ）
+      </p>
+    </section>
+
+    <!-- ===== 操作 ===== -->
+    <div class="actions">
+      <button id="generateBtn">▶ 合成する</button>
+      <button id="clearBtn" class="secondary">🗑 クリア</button>
+    </div>
+
+    <!-- ===== 検出された変数一覧 ===== -->
+    <section class="card" id="varListSection" style="display:none">
+      <h2>検出された変数</h2>
+      <div id="varList" class="var-tags"></div>
+    </section>
+
+    <!-- ===== 結果 ===== -->
+    <section class="card" id="resultSection" style="display:none">
+      <div class="card-header">
+        <h2>合成結果</h2>
+        <button id="copyBtn" class="copy-btn">📋 コピー</button>
+      </div>
+      <pre id="resultText"></pre>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
